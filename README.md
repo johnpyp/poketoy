@@ -10,8 +10,6 @@ Then, `pnpm i` (short for `pnpm install`) to install deps for all workspaces.
 
 ### Client
 
-Currently just a basic boilerplate for React.
-
 The client uses [vite](https://vitejs.dev), which is a supa fast alternative to tools like create-react-app.
 
 To start, on the default port:
@@ -22,8 +20,6 @@ To start, on the default port:
 ### Server
 
 The server is a standard node + typescript project, and uses `ts-eager` to run the server in dev, and build's with normal `tsc` for prod.
-
-Currently no code is written for the server.
 
 1. `cd packages/server`
 2. `cp .env.example .env`

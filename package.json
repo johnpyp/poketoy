@@ -5,15 +5,15 @@
   "main": "index.js",
   "scripts": {
     "watch": "tsc -b -w",
-    "dev:client": "pnpm --filter @pokeytoy/client dev",
-    "dev:server": "pnpm --filter @pokeytoy/server dev",
+    "dev:client": "pnpm --filter @poketoy/client dev",
+    "dev:server": "pnpm --filter @poketoy/server dev",
     "lint": "eslint 'packages/*/src/**/*.{js,ts,jsx,tsx}'"
   },
   "author": "johnpyp",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/johnpyp/pokeytoy.git"
+    "url": "git+https://github.com/johnpyp/poketoy.git"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.33.0",

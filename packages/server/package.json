@@ -1,0 +1,23 @@
+{
+  "name": "@pokeytoy/server",
+  "version": "0.0.1",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "node -r ts-eager/register -r dotenv/config src/index.ts",
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "apollo-server": "^3.3.0",
+    "apollo-server-core": "^3.3.0",
+    "apollo-server-express": "^3.3.0",
+    "express": "^4.17.1",
+    "graphql": "^15.6.1"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "ts-eager": "^2.0.2",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}

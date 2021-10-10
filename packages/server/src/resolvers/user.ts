@@ -122,6 +122,10 @@ export class UserResolver {
 
     if (input.email) user.email = input.email;
     if (input.username) user.username = input.username;
+    if (input.newPassword) {
+      const newPasswordHash = await argon2.hash(input.newPassword);
+      user.passwordHash = newPasswordHash;
+    }
 
     try {
       await userRepository.persistAndFlush(user);

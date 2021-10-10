@@ -23,6 +23,7 @@ module.exports = defineConfig({
   plugins: ["react", "@typescript-eslint", "import"],
   rules: {
     "import/no-default-export": ["warn"],
+    "@typescript-eslint/no-explicit-any": ["off"],
   },
   overrides: [
     {

@@ -4,20 +4,46 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "node -r ts-eager/register -r dotenv/config src/index.ts",
+    "dev": "node -r ts-eager/register -r dotenv/config src/main.ts",
     "build": "tsc -b"
   },
   "dependencies": {
+    "@graphql-tools/schema": "^8.2.0",
+    "@mikro-orm/cli": "^4.5.9",
+    "@mikro-orm/core": "^4.5.9",
+    "@mikro-orm/migrations": "^4.5.9",
+    "@mikro-orm/postgresql": "^4.5.9",
+    "altair-express-middleware": "^4.0.11",
     "apollo-server": "^3.3.0",
     "apollo-server-core": "^3.3.0",
+    "apollo-server-errors": "^3.1.0",
     "apollo-server-express": "^3.3.0",
+    "argon2": "^0.28.2",
+    "connect-redis": "^6.0.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "graphql": "^15.6.1"
+    "express-session": "^1.17.2",
+    "graphql": "^15.6.1",
+    "ioredis": "^4.27.10",
+    "pg-error-enum": "^0.5.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/connect-redis": "^0.0.17",
+    "@types/cors": "^2.8.12",
+    "@types/express-session": "^1.17.4",
+    "@types/uuid": "^8.3.1",
     "dotenv": "^10.0.0",
     "ts-eager": "^2.0.2",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./dist/src/orm.config.js"
+    ]
   }
 }

@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pikapika
+      POSTGRES_DB: poketoy
+  redis:
+    image: bitnami/redis:6.2
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 6379:6379
+    volumes:
+      - "redis_data:/bitnami/redis/data"
+
+volumes:
+  redis_data:
+    driver: local
+  postgres_data:
+    driver: local

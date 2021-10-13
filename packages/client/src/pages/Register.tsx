@@ -4,7 +4,6 @@ import {
   AlertIcon,
   Box,
   Button,
-  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -16,7 +15,8 @@ import { useToast } from "@chakra-ui/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { MeDocument, useRegisterMutation, UserListDocument } from "../generated/graphql";
+import { PageWrapper } from "../components/PageWrapper";
+import { useRegisterMutation } from "../generated/graphql";
 
 type LoginFormValues = {
   username: string;
@@ -38,7 +38,6 @@ export const Register: React.FC = () => {
       variables: {
         input: { email: values.email, username: values.username, password: values.password },
       },
-      refetchQueries: [MeDocument, UserListDocument],
     });
     if (!res.errors) {
       toast({
@@ -49,7 +48,7 @@ export const Register: React.FC = () => {
     console.log(values);
   });
   return (
-    <Flex justifyContent="center">
+    <PageWrapper>
       <Box width="sm">
         <Box>
           <Heading size="md">Register</Heading>
@@ -126,6 +125,6 @@ export const Register: React.FC = () => {
           </form>
         </Box>
       </Box>
-    </Flex>
+    </PageWrapper>
   );
 };

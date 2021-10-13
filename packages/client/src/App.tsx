@@ -15,7 +15,7 @@ export const App: React.FC = () => {
     <>
       <Router>
         <Header></Header>
-        <Container maxW="container.lg" pt="4">
+        <Container maxW="container.xl">
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />

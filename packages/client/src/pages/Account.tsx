@@ -17,7 +17,8 @@ import {
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { MeDocument, UserListDocument, useUpdateMeMutation } from "../generated/graphql";
+import { PageWrapper } from "../components/PageWrapper";
+import { useUpdateMeMutation } from "../generated/graphql";
 import { useUser } from "../hooks/useUser";
 
 type UpdateMeValues = {
@@ -46,12 +47,11 @@ export const Account: React.FC = () => {
           newPassword: values.password ?? null,
         },
       },
-      refetchQueries: [MeDocument, UserListDocument],
     });
     console.log(values);
   });
   return (
-    <Flex justifyContent="center">
+    <PageWrapper>
       <Box width="sm">
         <Heading size="lg" fontWeight="semibold">
           Account Info
@@ -157,6 +157,6 @@ export const Account: React.FC = () => {
           Delete Account
         </Button>
       </Box>
-    </Flex>
+    </PageWrapper>
   );
 };

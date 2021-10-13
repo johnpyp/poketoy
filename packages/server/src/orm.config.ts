@@ -1,6 +1,7 @@
 import { MikroORM } from "@mikro-orm/core";
-import { User } from "./entities/User";
 import path from "path";
+
+import { User } from "./entities/User";
 
 // eslint-disable-next-line import/no-default-export
 export default {

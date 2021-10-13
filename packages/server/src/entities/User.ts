@@ -1,6 +1,6 @@
-import { v4 } from "uuid";
 import { BaseEntity, Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, ObjectType } from "type-graphql";
+import { v4 } from "uuid";
 
 @ObjectType()
 @Entity({ tableName: "users" })

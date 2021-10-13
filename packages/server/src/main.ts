@@ -1,19 +1,20 @@
 import "reflect-metadata";
-import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
-import { ApolloServer } from "apollo-server-express";
-import express from "express";
-import http from "http";
-import session from "express-session";
-import Redis from "ioredis";
-import connectRedis from "connect-redis";
-import { altairExpress } from "altair-express-middleware";
 
 import { makeExecutableSchema } from "@graphql-tools/schema";
-import { buildTypeDefsAndResolvers } from "type-graphql";
-import { UserResolver } from "./resolvers/user";
 import { MikroORM } from "@mikro-orm/core";
-import ormConfig from "./orm.config";
+import { altairExpress } from "altair-express-middleware";
+import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
+import { ApolloServer } from "apollo-server-express";
+import connectRedis from "connect-redis";
+import express from "express";
+import session from "express-session";
+import http from "http";
+import Redis from "ioredis";
+import { buildTypeDefsAndResolvers } from "type-graphql";
+
 import { MyContext } from "./my-context";
+import ormConfig from "./orm.config";
+import { UserResolver } from "./resolvers/user";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -69,7 +70,7 @@ async function main() {
   server.applyMiddleware({
     app,
     cors: {
-      origin: ["http://localhost:3101", "https://studio.apollographql.com"],
+      origin: ["http://localhost:3000", "https://studio.apollographql.com"],
       credentials: true,
     },
   });

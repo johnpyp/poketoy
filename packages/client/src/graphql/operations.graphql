@@ -1,0 +1,40 @@
+mutation Login($input: LoginInput!) {
+  login(input: $input) {
+    ...UserFields
+  }
+}
+
+mutation Register($input: RegisterInput!) {
+  register(input: $input) {
+    ...UserFields
+  }
+}
+
+mutation Logout {
+  logout
+}
+
+mutation UpdateMe($input: UpdateMeInput!) {
+  updateMe(input: $input) {
+    ...UserFields
+  }
+}
+
+query Me {
+  me {
+    ...UserFields
+  }
+}
+
+query UserList {
+  users {
+    ...UserFields
+  }
+}
+
+
+fragment UserFields on User {
+  id
+  username
+  email
+}

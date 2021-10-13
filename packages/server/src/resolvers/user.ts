@@ -1,10 +1,11 @@
-import { Arg, Ctx, Field, InputType, Mutation, Query, Resolver } from "type-graphql";
-import { MyContext } from "../my-context";
-import { User } from "../entities/User";
-import argon2 from "argon2";
 import { ApolloError, AuthenticationError, ForbiddenError } from "apollo-server-core";
-import { AlreadyExistsError } from "../errors";
+import argon2 from "argon2";
 import { PostgresError } from "pg-error-enum";
+import { Arg, Ctx, Field, InputType, Mutation, Query, Resolver } from "type-graphql";
+
+import { User } from "../entities/User";
+import { AlreadyExistsError } from "../errors";
+import { MyContext } from "../my-context";
 
 @InputType()
 class RegisterInput {
@@ -58,12 +59,12 @@ export class UserResolver {
 
   @Query(() => User, { nullable: true })
   async me(@Ctx() ctx: MyContext): Promise<User | null> {
-    if (!ctx.req.session.userId) throw new AuthenticationError("Not logged in");
+    if (!ctx.req.session.userId) return null;
     const userRepository = ctx.em.getRepository(User);
     return userRepository.findOne({ id: ctx.req.session.userId });
   }
 
-  @Mutation(() => User)
+  @Mutation(() => User, { nullable: false })
   async register(@Arg("input") registerInput: RegisterInput, @Ctx() ctx: MyContext): Promise<User> {
     const userRepository = ctx.em.getRepository(User);
     const passwordHash = await argon2.hash(registerInput.password);
@@ -86,8 +87,8 @@ export class UserResolver {
     }
   }
 
-  @Mutation(() => User, { nullable: true })
-  async login(@Arg("input") loginInput: LoginInput, @Ctx() ctx: MyContext): Promise<User | null> {
+  @Mutation(() => User, { nullable: false })
+  async login(@Arg("input") loginInput: LoginInput, @Ctx() ctx: MyContext): Promise<User> {
     const userRepository = ctx.em.getRepository(User);
 
     const user = await userRepository.findOne({ email: loginInput.email });
@@ -101,14 +102,14 @@ export class UserResolver {
     return user;
   }
 
-  @Mutation(() => Boolean)
+  @Mutation(() => Boolean, { nullable: false })
   async logout(@Ctx() ctx: MyContext): Promise<boolean> {
     if (!ctx.req.session.userId) return false;
     await new Promise((r) => ctx.req.session.destroy(r));
     return true;
   }
 
-  @Mutation(() => User)
+  @Mutation(() => User, { nullable: false })
   async updateMe(@Arg("input") input: UpdateMeInput, @Ctx() ctx: MyContext): Promise<User> {
     if (!ctx.req.session.userId) throw new AuthenticationError("Not authenticated");
 

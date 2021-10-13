@@ -20,10 +20,14 @@ module.exports = defineConfig({
     sourceType: "module",
     ecmaVersion: 2021,
   },
-  plugins: ["react", "@typescript-eslint", "import"],
+  plugins: ["react", "@typescript-eslint", "import", "simple-import-sort"],
   rules: {
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
     "import/no-default-export": ["warn"],
     "@typescript-eslint/no-explicit-any": ["off"],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "lines-between-class-members": ["error", "always", { exceptAfterSingleLine: true }],
   },
   overrides: [
     {

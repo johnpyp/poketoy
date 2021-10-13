@@ -13,6 +13,7 @@ importers:
       eslint-plugin-prettier: ^4.0.0
       eslint-plugin-react: ^7.26.1
       eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-unused-imports: ^1.1.5
       prettier: ^2.4.1
       typescript: ^4.4.3
       update-ts-references: ^2.4.1
@@ -26,6 +27,7 @@ importers:
       eslint-plugin-prettier: 4.0.0_6e975bd57c7acf028c1a9ddbbf60c898
       eslint-plugin-react: 7.26.1_eslint@7.32.0
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.32.0
+      eslint-plugin-unused-imports: 1.1.5_d3b4c2d4ac51f4275548d5d796aee5d5
       prettier: 2.4.1
       typescript: 4.4.3
       update-ts-references: 2.4.1_typescript@4.4.3
@@ -5112,6 +5114,26 @@ packages:
       eslint: '>=5.0.0'
     dependencies:
       eslint: 7.32.0
+    dev: true
+
+  /eslint-plugin-unused-imports/1.1.5_d3b4c2d4ac51f4275548d5d796aee5d5:
+    resolution: {integrity: sha512-TeV8l8zkLQrq9LBeYFCQmYVIXMjfHgdRQLw7dEZp4ZB3PeR10Y5Uif11heCsHRmhdRIYMoewr1d9ouUHLbLHew==}
+    engines: {node: ^10.12.0 || >=12.0.0}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^4.14.2
+      eslint: ^6.0.0 || ^7.0.0
+    peerDependenciesMeta:
+      '@typescript-eslint/eslint-plugin':
+        optional: true
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 4.33.0_d753869925cce96d3eb2141eeedafe57
+      eslint: 7.32.0
+      eslint-rule-composer: 0.3.0
+    dev: true
+
+  /eslint-rule-composer/0.3.0:
+    resolution: {integrity: sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==}
+    engines: {node: '>=4.0.0'}
     dev: true
 
   /eslint-scope/5.1.1:

@@ -6,7 +6,7 @@ export interface PageWrapperProps {
 }
 export const PageWrapper: React.FC<PageWrapperProps> = ({ children, variant }) => {
   return (
-    <Flex justify="center" p="8" w={variant === "sm" ? "sm" : "full"}>
+    <Flex justify="center" py="8" w={variant === "sm" ? "sm" : "full"}>
       {children}
     </Flex>
   );

@@ -33,7 +33,7 @@ async function main() {
   app.use(
     session({
       name: "qid",
-      secret: "verykoolpassword",
+      secret: process.env.SESSION_SECRET ?? "-BAD SECRET-",
       resave: false,
       saveUninitialized: true,
       cookie: { secure: "auto", sameSite: "lax", httpOnly: isProd },

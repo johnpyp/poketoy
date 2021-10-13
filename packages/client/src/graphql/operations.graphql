@@ -20,6 +20,10 @@ mutation UpdateMe($input: UpdateMeInput!) {
   }
 }
 
+mutation DeleteMe($input: DeleteMeInput!) {
+  deleteMe(input: $input)
+}
+
 query Me {
   me {
     ...UserFields

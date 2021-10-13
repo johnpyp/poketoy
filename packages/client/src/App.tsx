@@ -1,5 +1,3 @@
-import "./App.css";
-
 import { Container } from "@chakra-ui/react";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";

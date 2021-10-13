@@ -43,6 +43,12 @@ class UpdateMeInput {
   newPassword?: string;
 }
 
+@InputType()
+class DeleteMeInput {
+  @Field()
+  currentPassword!: string;
+}
+
 @Resolver()
 export class UserResolver {
   @Query(() => [User])
@@ -87,7 +93,7 @@ export class UserResolver {
     }
   }
 
-  @Mutation(() => User, { nullable: false })
+  @Mutation(() => User)
   async login(@Arg("input") loginInput: LoginInput, @Ctx() ctx: MyContext): Promise<User> {
     const userRepository = ctx.em.getRepository(User);
 
@@ -102,14 +108,14 @@ export class UserResolver {
     return user;
   }
 
-  @Mutation(() => Boolean, { nullable: false })
+  @Mutation(() => Boolean)
   async logout(@Ctx() ctx: MyContext): Promise<boolean> {
     if (!ctx.req.session.userId) return false;
     await new Promise((r) => ctx.req.session.destroy(r));
     return true;
   }
 
-  @Mutation(() => User, { nullable: false })
+  @Mutation(() => User)
   async updateMe(@Arg("input") input: UpdateMeInput, @Ctx() ctx: MyContext): Promise<User> {
     if (!ctx.req.session.userId) throw new AuthenticationError("Not authenticated");
 
@@ -137,6 +143,28 @@ export class UserResolver {
         throw new AlreadyExistsError("New email or username already in use");
       }
       throw new ApolloError("Something went wrong");
+    }
+  }
+
+  @Mutation(() => Boolean)
+  async deleteMe(@Arg("input") input: DeleteMeInput, @Ctx() ctx: MyContext): Promise<boolean> {
+    if (!ctx.req.session.userId) throw new AuthenticationError("Not authenticated");
+
+    const userRepository = ctx.em.getRepository(User);
+
+    const user = await userRepository.findOne({ id: ctx.req.session.userId });
+    if (!user) throw new ForbiddenError("User not found");
+
+    const isValidPassword = await argon2.verify(user.passwordHash, input.currentPassword);
+    if (!isValidPassword) throw new ForbiddenError("Incorrect login");
+
+    try {
+      await userRepository.removeAndFlush(user);
+      await new Promise((r) => ctx.req.session.destroy(r));
+      return true;
+    } catch (e) {
+      throw new ApolloError("Something went wrong");
+      /* handle error */
     }
   }
 }

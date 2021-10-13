@@ -16,7 +16,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import { PageWrapper } from "../components/PageWrapper";
-import { useRegisterMutation } from "../generated/graphql";
+import { MeDocument, useRegisterMutation } from "../generated/graphql";
 
 type LoginFormValues = {
   username: string;
@@ -38,6 +38,7 @@ export const Register: React.FC = () => {
       variables: {
         input: { email: values.email, username: values.username, password: values.password },
       },
+      refetchQueries: [MeDocument],
     });
     if (!res.errors) {
       toast({

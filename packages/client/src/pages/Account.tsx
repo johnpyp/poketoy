@@ -17,6 +17,7 @@ import {
 import React from "react";
 import { useForm } from "react-hook-form";
 
+import { DeleteMeForm } from "../components/DeleteMeForm";
 import { PageWrapper } from "../components/PageWrapper";
 import { useUpdateMeMutation } from "../generated/graphql";
 import { useUser } from "../hooks/useUser";
@@ -52,7 +53,7 @@ export const Account: React.FC = () => {
   });
   return (
     <PageWrapper>
-      <Box width="sm">
+      <VStack align="left" width="md">
         <Heading size="lg" fontWeight="semibold">
           Account Info
         </Heading>
@@ -151,12 +152,16 @@ export const Account: React.FC = () => {
             </VStack>
           </form>
         </Box>
-        <Divider my="4"></Divider>
-
-        <Button width="full" colorScheme="red" isLoading={isSubmitting || loading} type="submit">
-          Delete Account
-        </Button>
-      </Box>
+        <Box>
+          <Divider my="8"></Divider>
+          <Heading size="lg" fontWeight="semibold">
+            Delete Account
+          </Heading>
+          <Box mt="4">
+            <DeleteMeForm></DeleteMeForm>
+          </Box>
+        </Box>
+      </VStack>
     </PageWrapper>
   );
 };
